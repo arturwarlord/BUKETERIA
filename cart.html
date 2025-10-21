@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Condensed&display=swap" rel="stylesheet">
+    <!--Библиотека jQuery-->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    <title>Buketeria — Корзина</title>
+</head>
+<body>
+
+    
+    <body id="bgImage">
+      <div class="container">
+        <header>
+      <div class="logo">BUKETERIA</div>
+      <div class="location">📍 Казань ▼</div>
+      <nav class="nav">
+        <a href="index.html">Главная</a>
+        <a href="about.html">О сервисе</a>
+        <a href="#">Доставка</a>
+        <a href="cart.html">Корзина</a>
+        <a href="register.html">Вход</a>
+      </nav>
+    
+    
+      <!-- Бургер-меню для мобильных -->
+    <div class="burger-wrapper">
+      <button class="burger-menu" aria-label="Меню">&#9776;</button>
+      <nav class="burger-nav">
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="about.html">О сервисе</a></li>
+          <li><a href="#">Доставка</a></li>
+          <li><a href="cart.html">Корзина</a></li>
+          <li><a href="register.html">Вход</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+         <script>
+      const burgerBtn = document.querySelector('.burger-menu');
+      const burgerNav = document.querySelector('.burger-nav');
+    
+      burgerBtn.addEventListener('click', () => {
+        burgerNav.classList.toggle('active');
+        burgerBtn.classList.toggle('active');
+    
+        // Меняем иконку
+        if (burgerBtn.classList.contains('active')) {
+          burgerBtn.innerHTML = '&#10005;'; // крестик ×
+        } else {
+          burgerBtn.innerHTML = '&#9776;'; // бургер ≡
+        }
+      });
+    
+      // Закрытие меню при клике вне его
+      document.addEventListener('click', (e) => {
+        if (!burgerBtn.contains(e.target) && !burgerNav.contains(e.target)) {
+          burgerNav.classList.remove('active');
+          burgerBtn.classList.remove('active');
+          burgerBtn.innerHTML = '&#9776;'; // вернуть иконку бургер
+        }
+      });
+    </script>
+      </header>
+    </div>
+    
+      <div class="season-banner"></div>
+      <script>
+        // Ваш скрипт определения сезона
+        const banner = document.querySelector('.season-banner');
+        const month = new Date().getMonth() + 1;
+        let seasonImg = '';
+    
+        if (month >= 3 && month <= 5) {
+          seasonImg = 'images/spring.jpg';
+        } else if (month >= 6 && month <= 8) {
+          seasonImg = 'images/summer.jpg';
+        } else if (month >= 9 && month <= 11) {
+          seasonImg = 'images/autumn.jpg';
+        } else {
+          seasonImg = 'images/winter.jpg';
+        }
+        banner.style.backgroundImage = `url(${seasonImg})`;
+      </script>
+    
+      <!-- Основная часть: товары и корзина -->
+    <section class="intro">
+      <div class="container">
+    
+        <!-- Секция корзины -->
+        <div id="cart-section" class="cart-section" style="margin-top:40px;">
+          <h2 class="section-title">Ваши покупки</h2>
+          <div id="cart-items" class="cart-items">
+            <!-- Здесь будут отображаться выбранные товары -->
+            <p class="empty-message">Корзина пуста.</p>
+          </div>
+          <div class="cart-summary">
+            <strong>Итог: </strong><span id="total-price">0 ₽</span>
+          </div>
+          <button id="clear-cart" class="btn clear-btn">Очистить корзину</button>
+        </div>
+    
+      </div>
+    </section>
+    <script>
+      // Инициализация корзины из Local Storage
+      let cartItems = [];
+    
+      function loadCart() {
+        const data = localStorage.getItem('cart');
+        if (data) {
+          return JSON.parse(data);
+        }
+        return [];
+      }
+    
+      function saveCart() {
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+      }
+    
+      // Отображение корзины
+      function renderCart() {
+        const cartContainer = document.getElementById('cart-items');
+        const totalPriceSpan = document.getElementById('total-price');
+    
+        cartContainer.innerHTML = '';
+    
+        if (cartItems.length === 0) {
+          const msg = document.createElement('p');
+          msg.className = 'empty-message';
+          msg.textContent = 'Корзина пуста.';
+          cartContainer.appendChild(msg);
+          totalPriceSpan.textContent = '0 ₽';
+          return;
+        }
+    
+        let totalSum = 0;
+        cartItems.forEach((item, index) => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'cart-item';
+          const priceValue = parseFloat(item.price.replace(' ₽', '').replace(',', '.'));
+          totalSum += priceValue;
+    
+          itemDiv.innerHTML = `
+            <div><strong>${item.title}</strong></div>
+            <div>${item.price}</div>
+            <button data-index="${index}" class="remove-btn">Удалить</button>
+          `;
+          cartContainer.appendChild(itemDiv);
+        });
+    
+        totalPriceSpan.textContent = totalSum.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
+    
+        // Обработка удаления
+        document.querySelectorAll('.remove-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const index = parseInt(btn.dataset.index);
+            if (!isNaN(index)) {
+              cartItems.splice(index, 1);
+              saveCart();
+              renderCart();
+            }
+          });
+        });
+      }
+    
+      // Обработка очистки корзины
+      document.getElementById('clear-cart').addEventListener('click', () => {
+        cartItems = [];
+        saveCart();
+        renderCart();
+      });
+    
+      document.addEventListener('DOMContentLoaded', () => {
+        // восстановление корзины
+        cartItems = loadCart();
+        renderCart();
+    
+        // обработка добавления товара
+        document.querySelectorAll('button[title="В корзину"]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const card = btn.closest('.card');
+            if (!card) return;
+            const title = card.querySelector('h4')?.textContent.trim() || 'Без названия';
+            const price = card.querySelector('.price')?.textContent.trim() || '0 ₽';
+    
+            // добавляем
+            cartItems.push({ title, price });
+            saveCart();
+            renderCart();
+          });
+        });
+      });
+    </script>
+    
+    
+    <script>
+      // Определение сезона и применение класса
+      function getSeason() {
+        const month = new Date().getMonth() + 1; // Мецы с 1
+        if (month >= 3 && month <= 5) {
+          return 'spring'; // Весна
+        } else if (month >= 6 && month <= 8) {
+          return 'summer'; // Лето
+        } else if (month >= 9 && month <= 11) {
+          return 'autumn'; // Осень
+        } else {
+          return 'winter'; // Зима
+        }
+      }
+    
+      document.addEventListener("DOMContentLoaded", () => {
+        const season = getSeason();
+        document.body.classList.add(season);
+      });
+    </script>
+    </body>
+    
+
+
+    <script src="assets/js/app.min.js"></script>
+
+</body>
+</html>

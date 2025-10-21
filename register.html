@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Condensed&display=swap" rel="stylesheet">
+    <!--Библиотека jQuery-->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    <title></title>
+</head>
+<body>
+
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Страница регистрации</title>
+      <style>
+        /* Общие стили для страницы */
+          body {
+              margin: 0;
+          padding: 0;
+          font-family: 'Arial', sans-serif;
+          /* Задаем фоновое изображение */
+          background-image: url('images/autumn.jpg');
+          background-size: cover;
+          background-position: center;
+          height: 100vh;
+          }
+    
+          .intro_head {
+              background-color: rgba(255, 255, 255, 0.81);
+          }
+    
+          .rega {
+              display: flex;
+      justify-content: center; /* горизонтальное центрирование */
+      align-items: center;    /* вертикальное центрирование */
+      height: 100vh;
+          }
+    
+        /* Форма регистрации */
+        .register-form {
+          background-color: rgba(255, 255, 255, 0.42);
+          padding: 40px;
+          border-radius: 12px;
+          box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+          max-width: 400px;
+          width: 90%;
+          backdrop-filter: blur(4px); /* чуть размытия для красивого эффекта */
+        }
+    
+        .register-form h2 {
+          text-align: center;
+          margin-bottom: 20px;
+          font-size: 24px;
+          color: #333;
+        }
+    
+        /* Поля ввода и кнопка */
+        .register-form input[type="text"],
+        .register-form input[type="email"],
+        .register-form input[type="password"] {
+          width: 100%;
+          padding: 12px 15px;
+          margin-bottom: 15px;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          font-size: 16px;
+          transition: border-color 0.2s;
+        }
+    
+        /* Фокус для полей */
+        .register-form input[type="text"]:focus,
+        .register-form input[type="email"]:focus,
+        .register-form input[type="password"]:focus {
+          border-color: #007bff;
+          outline: none;
+        }
+    
+        /* Кнопка регистрации */
+        .register-form button {
+          width: 100%;
+          padding: 14px;
+          background-color: var(--color-primary);
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-size: 16px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+    
+        .register-form button:hover {
+          background-color: var(--color-primary-light);
+        }
+    
+        /* Адаптация для мобильных */
+        @media(max-width: 480px) {
+          .register-form {
+            padding: 30px 20px;
+          }
+        }
+      </style>
+    </head>
+    <body>
+    <div class="wrapper">
+    <section class="intro_head">
+     <div class="container">
+        <header>
+      <div class="logo">BUKETERIA</div>
+      <div class="location">📍 Казань ▼</div>
+      <nav class="nav">
+        <a href="index.html">Главная</a>
+        <a href="about.html">О сервисе</a>
+        <a href="#">Доставка</a>
+        <a href="cart.html">Корзина</a>
+        <a href="register.html">Вход</a>
+      </nav>
+    
+    
+      <!-- Бургер-меню для мобильных -->
+    <div class="burger-wrapper">
+      <button class="burger-menu" aria-label="Меню">&#9776;</button>
+      <nav class="burger-nav">
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="about.html">О сервисе</a></li>
+          <li><a href="#">Доставка</a></li>
+          <li><a href="cart.html">Корзина</a></li>
+          <li><a href="register.html">Вход</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+         <script>
+      const burgerBtn = document.querySelector('.burger-menu');
+      const burgerNav = document.querySelector('.burger-nav');
+    
+      burgerBtn.addEventListener('click', () => {
+        burgerNav.classList.toggle('active');
+        burgerBtn.classList.toggle('active');
+    
+        // Меняем иконку
+        if (burgerBtn.classList.contains('active')) {
+          burgerBtn.innerHTML = '&#10005;'; // крестик ×
+        } else {
+          burgerBtn.innerHTML = '&#9776;'; // бургер ≡
+        }
+      });
+    
+      // Закрытие меню при клике вне его
+      document.addEventListener('click', (e) => {
+        if (!burgerBtn.contains(e.target) && !burgerNav.contains(e.target)) {
+          burgerNav.classList.remove('active');
+          burgerBtn.classList.remove('active');
+          burgerBtn.innerHTML = '&#9776;'; // вернуть иконку бургер
+        }
+      });
+    </script>
+      </header>
+    </div>
+    </section>
+     <div class="container">
+     <div class="rega">
+      <form class="register-form" action="#" method="POST">
+        <h2>РЕГИСТРАЦИЯ</h2>
+        <input type="text" name="name" placeholder="Имя" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="password" name="password" placeholder="Пароль" required />
+        <button type="submit">Зарегистрироваться</button>
+      </form>
+    </div>
+    </div>
+    
+    <script>
+      function setSeasonClass() {
+        const body = document.body;
+        const month = new Date().getMonth() + 1; // 1..12
+    
+        // Снимаем все темы, если были
+        body.classList.remove('spring', 'summer', 'autumn', 'winter');
+    
+        if (month >= 3 && month <= 5) {
+          body.classList.add('spring');
+        } else if (month >= 6 && month <= 8) {
+          body.classList.add('summer');
+        } else if (month >= 9 && month <= 11) {
+          body.classList.add('autumn');
+        } else {
+          body.classList.add('winter');
+        }
+      }
+    
+      document.addEventListener('DOMContentLoaded', setSeasonClass);
+    </script>
+    </div>
+    </body>
+    </html>
+    
+
+
+    <script src="assets/js/app.min.js"></script>
+
+</body>
+</html>
