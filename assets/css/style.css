@@ -227,6 +227,39 @@ body {
     }
 }
 
+@media (max-width: 786px) {
+    .card {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 1 calc(50% - 18px);
+        flex: 0 1 calc(50% - 18px);
+    /* или 33.33%, по желанию */
+    }
+}
+
+@media (max-width: 516px) {
+    .card {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 1 calc(50% - 18px);
+        flex: 0 1 calc(50% - 18px);
+    /* или 33.33%, по желанию */
+        min-width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card h4 {
+        margin: 5px 10px;
+    }
+
+    .actions {
+        margin: 0 5px  10px 10px;
+    }
+
+    .price {
+        margin: 0 10px 10px;
+    }
+}
+
 /* Общее оформление для кнопки бургер */
 .product-filters {
     display: -webkit-box;
@@ -391,37 +424,15 @@ body {
 
 /* Адаптация для мобильных устройств */
 @media (max-width: 600px) {
-    .cart-item {
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        -webkit-box-align: start;
-        -ms-flex-align: start;
-        align-items: flex-start;
-    }
-
     .cart-item .title,
   .cart-item .price {
         margin-bottom: 8px;
-    }
-
-    .cart-summary {
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        -webkit-box-align: start;
-        -ms-flex-align: start;
-        align-items: flex-start;
-        gap: 10px;
     }
 }
 
 h1 {
     padding-top: 20px;
     text-align: center;
-    font-size: 2.8rem;
     margin-bottom: 20px;
     color: var(--color-header-text);
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
