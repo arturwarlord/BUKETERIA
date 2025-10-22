@@ -123,6 +123,9 @@ body {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
     -webkit-transition: -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
     transition: -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
