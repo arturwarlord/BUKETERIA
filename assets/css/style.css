@@ -56,19 +56,30 @@
     --color-filter-bg-active: #f2a55a;
 }
 
-/* Осень — теплые коричневато-оранжевые */
+/* Осень — розовые оттенки */
 .autumn {
-    --color-primary: #b97439;
-    --color-primary-dark: #6a4a1d;
-    --color-primary-light: #d1a05a;
-    --color-background: #faf3e7;
-    --color-text: #5c401d;
-    --color-icon-btn-hover-bg: #7e5424;
-    --color-link: #b97439;
-    --color-link-hover: #d1a05a;
-    --color-header-text: #b97439;
-    --color-filter-border: #d1a05a;
-    --color-filter-bg-active: #d1a05a;
+    --color-primary: #ff69b4;
+  /* ярко-розовый */
+    --color-primary-dark: #b85073;
+  /* тёмно-розовый или фуксия */
+    --color-primary-light: #ff788c;
+  /* светло-розовый */
+    --color-background: #fff0f5;
+  /* очень светлый розовый (лаванда) */
+    --color-text: #b22222;
+  /* тёмно-розовый или бордовый */
+    --color-icon-btn-hover-bg: #b85073;
+  /* розовый "д當ало" (deep pink) */
+    --color-link: #b85073;
+  /* основной розовый для ссылок */
+    --color-link-hover: #b85073;
+  /* глубокий розовый при hover */
+    --color-header-text: #b85073;
+  /* заголовки в тёмно-розовых оттенках */
+    --color-filter-border: #ff69b4;
+  /* рамка в розовых оттенках */
+    --color-filter-bg-active: #c66385;
+  /* активный фон фильтра в светлом розовом */
 }
 
 /* Зима — холодные синие и серые */
@@ -664,3 +675,45 @@ nav {
 }
 
 /* Vendor libs */
+/* Стиль для кнопки оформления заказа */
+#order-btn {
+    background-color: #4CAF50;
+  /* Зеленый цвет */
+    color: white;
+  /* Цвет текста */
+    padding: 12px 24px;
+  /* Отступы внутри кнопки */
+    font-size: 16px;
+  /* Размер шрифта */
+    border: none;
+  /* Без рамки */
+    border-radius: 5px;
+  /* Скругленные углы */
+    cursor: pointer;
+  /* Курсор при наведении */
+    -webkit-transition: background-color 0.3s, -webkit-transform 0.2s;
+    transition: background-color 0.3s, -webkit-transform 0.2s;
+    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s, transform 0.2s, -webkit-transform 0.2s;
+  /* Плавные эффекты */
+    margin-top: 5px;
+  /* Отступ сверху */
+}
+
+#order-btn:hover {
+    background-color: #45a049;
+  /* Более темный зеленый при наведении */
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+  /* Легкое увеличение при наведении */
+}
+
+#order-btn:active {
+    -webkit-transform: scale(0.98);
+    -ms-transform: scale(0.98);
+    transform: scale(0.98);
+  /* Немного сжимается при клике */
+    background-color: #3e8e41;
+  /* Еще более темный при активном клике */
+}

@@ -296,22 +296,24 @@
         // Обработчик для кнопок "Купить"
         const buyButtons = document.querySelectorAll('button[title="В корзину"]');
     
-        buyButtons.forEach(btn => {
-          btn.addEventListener('click', () => {
-            const card = btn.closest('.card');
-            if (!card) return;
+        // Обработчик для кнопок "Купить"
+    buyButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.card');
+        if (!card) return;
     
-            const title = card.querySelector('h4')?.textContent.trim() || 'Без названия';
-            const priceText = card.querySelector('.price')?.textContent.trim() || 'Цена не указана';
+        const title = card.querySelector('h4')?.textContent.trim() || 'Без названия';
+        const priceText = card.querySelector('.price')?.textContent.trim() || 'Цена не указана';
+        const imgSrc = card.querySelector('img')?.getAttribute('src') || '';
     
-            const product = { title, price: priceText };
+        const product = { title, price: priceText, img: imgSrc };
     
-            // Добавляем товар в корзину
-            cartItems.push(product);
-            saveCart();
-            updateCartCount();
-          });
-        });
+        // Добавляем товар в корзину
+        cartItems.push(product);
+        saveCart();
+        updateCartCount();
+      });
+    });
       });
     </script>
     
