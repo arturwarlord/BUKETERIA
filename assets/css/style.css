@@ -165,13 +165,13 @@ body {
 .card h4 {
     font-size: 1.1rem;
     margin: 16px;
-    color: var(--color-text);
+    color: var(--color-primary-light);
 }
 
 .price {
     margin: 0 16px 16px;
     font-weight: bold;
-    color: var(--color-primary-light);
+    color: var(--color-text);
     font-size: 1.1rem;
 }
 
@@ -670,7 +670,7 @@ nav {
 }
 
 .filters button.active, .filters button:hover {
-    background: var(--color-filter-bg-active);
+    background: var(--color-primary);
     color: white;
 }
 
