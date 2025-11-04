@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-papKH9prdtf2KnY1TQ++Lht0X3MdXs7Ma8q7mO6YIYmbC1TuYKtIX6xd33Yz8zpP2FK4l9c1V0Q0/st3YhV4jRQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Библиотека jQuery-->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    <title></title>
+</head>
+<body>
+
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Контакты</title>
+    <style>
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 40px auto;
+      background: var(--color-background);
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+      padding: 40px 30px;
+    }
+    
+    h1 {
+      margin-top: 0;
+      color: var(--color-header-text);
+      text-align: center;
+      font-weight: 700;
+      font-size: 2.5rem;
+    }
+    
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin: 30px 0;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 1.1rem;
+    }
+    
+    .contact-item svg {
+      fill: var(--color-primary-light);
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+    }
+    
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--color-primary-dark);
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      padding: 12px 15px;
+      border: 1.5px solid var(--color-filter-border);
+      border-radius: 12px;
+      font-size: 1rem;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+      background: var(--color-background);
+      color: var(--color-text);
+    }
+    
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      border-color: var(--color-button-bg);
+      outline: none;
+    }
+    
+    textarea {
+      min-height: 100px;
+    }
+    
+    button.submit-btn {
+      align-self: flex-start;
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    
+    button.submit-btn:hover {
+      background: var(--color-primary-light);
+    }
+    
+    
+    
+    </style>
+    </head>
+    <body>
+     <div class="container">
+        <header>
+      <a href="index.html" class="logo">BUKETERIA</a>
+      <nav class="nav">
+        <a href="contact.html">Контакты</a>
+        <a href="review.html">Отзывы</a>
+        <a href="uxod.html">Уход за цветами</a>
+        <a href="cart.html">Корзина</a>
+      </nav>
+    
+    
+      <!-- Бургер-меню для мобильных -->
+    <div class="burger-wrapper">
+      <button class="burger-menu" aria-label="Меню">&#9776;</button>
+      <nav class="burger-nav">
+        <ul>
+          <li><a href="contact.html">Контакты</a></li>
+          <li><a href="review.html">Отзывы</a></li>
+          <li><a href="uxod.html">Уход за цветами</a></li>
+          <li><a href="cart.html">Корзина</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+         <script>
+      const burgerBtn = document.querySelector('.burger-menu');
+      const burgerNav = document.querySelector('.burger-nav');
+    
+      burgerBtn.addEventListener('click', () => {
+        burgerNav.classList.toggle('active');
+        burgerBtn.classList.toggle('active');
+    
+        // Меняем иконку
+        if (burgerBtn.classList.contains('active')) {
+          burgerBtn.innerHTML = '&#10005;'; // крестик ×
+        } else {
+          burgerBtn.innerHTML = '&#9776;'; // бургер ≡
+        }
+      });
+    
+      // Закрытие меню при клике вне его
+      document.addEventListener('click', (e) => {
+        if (!burgerBtn.contains(e.target) && !burgerNav.contains(e.target)) {
+          burgerNav.classList.remove('active');
+          burgerBtn.classList.remove('active');
+          burgerBtn.innerHTML = '&#9776;'; // вернуть иконку бургер
+        }
+      });
+    </script>
+      </header>
+    </div>
+    <div class="season-banner">
+        <img src="assets/img/back.jpg" alt="">
+    </div>
+    <main>
+      <h1>Контакты</h1>
+    
+      <div class="contact-info" style="display: flex; justify-content: center; margin: 0;">
+        <div class="contact-item" style="display: flex; justify-content: center;">
+          <p style="padding: 0; margin: 0; display: flex; padding-bottom: 20px;"><svg style="fill: green;" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.2.48 2.5.74 3.85.74a1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 20.5 3.5 13.93 3.5 6a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.26 2.65.74 3.85a1 1 0 01-.12 1.04z"/></svg>
+          +7 (987) 186-96-46</p>
+        </div>
+      </div>
+      <div class="contact-item" style="display: flex; justify-content: center">
+          <p style="padding: 0; margin: 0; display: flex;"><svg style="fill: green;" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.2.48 2.5.74 3.85.74a1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 20.5 3.5 13.93 3.5 6a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.26 2.65.74 3.85a1 1 0 01-.12 1.04z"/></svg> +7 (917) 884-07-47</p>
+      </div>
+    <div class="footer-social" style="display: flex; justify-content: center">
+         <div>
+          <h4 style="font-size: 25px; margin-top: 50px;">Социальные сети</h4>
+    
+    
+          <a style="margin-left: 50px;" href="https://www.instagram.com/buketeria_kzn?igsh=Z2J5N2t0M2Y1bWln" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/24/2111/2111463.png" alt="Instagram" />
+            Instagram
+          </a>
+    
+          <a style="margin-left: 50px;" href="https://t.me/buketnaja_kazan" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/24/2111/2111646.png" alt="Telegram" />
+            Telegram
+          </a>
+    
+          <a style="margin-left: 50px;" href="https://wa.me/79871869646" target="_blank">
+              <img src="https://cdn-icons-png.flaticon.com/24/733/733585.png" alt="WhatsApp" />
+              WhatsApp
+            </a>
+    </div>
+        </div>
+    
+    
+    </main>
+    
+    
+    <script>
+      function getSeason() {
+        const month = new Date().getMonth() + 1;
+        if (month >= 3 && month <= 5) {
+          return 'spring';
+        } else if (month >= 6 && month <= 8) {
+          return 'summer';
+        } else if (month >= 9 && month <= 11) {
+          return 'autumn';
+        } else {
+          return 'winter';
+        }
+      }
+    
+      document.addEventListener("DOMContentLoaded", () => {
+        const season = getSeason();
+        document.body.classList.add(season);
+      });
+    </script>
+    </body>
+    </html>
+    
+
+
+    <script src="assets/js/app.min.js"></script>
+
+<footer class="flower-shop-footer">
+  <div class="footer-container">
+    <div class="footer-contacts">
+      <h4>Контакты</h4>
+        <p>+7 (987) 186-96-46</p>
+      <p>+7 (917) 884-07-47</p>
+    </div>
+    <div class="footer-social">
+      <h4>Социальные сети</h4>
+
+<div class="footer_colls">
+     <div class="">
+      <a href="https://www.instagram.com/buketeria_kzn?igsh=Z2J5N2t0M2Y1bWln" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/24/2111/2111463.png" alt="Instagram" />
+        Instagram
+      </a>
+
+      <a href="https://t.me/buketnaja_kazan" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/24/2111/2111646.png" alt="Telegram" />
+        Telegram
+      </a>
+
+      <a href="https://wa.me/79871869646" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/24/733/733585.png" alt="WhatsApp" />
+          WhatsApp
+        </a>
+        </div>
+</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 Цветочный магазин. Все права защищены.</p>
+  </div>
+</footer>
+
+
+</body>
+</html>

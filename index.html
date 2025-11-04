@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-papKH9prdtf2KnY1TQ++Lht0X3MdXs7Ma8q7mO6YIYmbC1TuYKtIX6xd33Yz8zpP2FK4l9c1V0Q0/st3YhV4jRQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Библиотека jQuery-->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    <title>Buketeria</title>
+</head>
+<body>
+
+    
+    <body id="bgImage">
+    
+    
+     <div class="container">
+        <header>
+      <a href="index.html" class="logo">BUKETERIA</a>
+      <nav class="nav">
+        <a href="contact.html">Контакты</a>
+        <a href="review.html">Отзывы</a>
+        <a href="uxod.html">Уход за цветами</a>
+        <a href="cart.html">Корзина</a>
+      </nav>
+    
+    
+      <!-- Бургер-меню для мобильных -->
+    <div class="burger-wrapper">
+      <button class="burger-menu" aria-label="Меню">&#9776;</button>
+      <nav class="burger-nav">
+        <ul>
+          <li><a href="contact.html">Контакты</a></li>
+          <li><a href="review.html">Отзывы</a></li>
+          <li><a href="uxod.html">Уход за цветами</a></li>
+          <li><a href="cart.html">Корзина</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+         <script>
+      const burgerBtn = document.querySelector('.burger-menu');
+      const burgerNav = document.querySelector('.burger-nav');
+    
+      burgerBtn.addEventListener('click', () => {
+        burgerNav.classList.toggle('active');
+        burgerBtn.classList.toggle('active');
+    
+        // Меняем иконку
+        if (burgerBtn.classList.contains('active')) {
+          burgerBtn.innerHTML = '&#10005;'; // крестик ×
+        } else {
+          burgerBtn.innerHTML = '&#9776;'; // бургер ≡
+        }
+      });
+    
+      // Закрытие меню при клике вне его
+      document.addEventListener('click', (e) => {
+        if (!burgerBtn.contains(e.target) && !burgerNav.contains(e.target)) {
+          burgerNav.classList.remove('active');
+          burgerBtn.classList.remove('active');
+          burgerBtn.innerHTML = '&#9776;'; // вернуть иконку бургер
+        }
+      });
+    </script>
+      </header>
+    </div>
+    
+    
+    
+    <div class="season-banner">
+        <img src="assets/img/back.jpg" alt="">
+    </div>
+    
+    <section class="intro">
+    <div class="container">
+    <h1>Доставка цветов в Казани</h1>
+    <div class="product-filters">
+      <input type="text" id="filter-search" placeholder="Поиск по названию..." />
+      <input type="number" id="filter-price-min" placeholder="Мин. цена" min="0" />
+      <input type="number" id="filter-price-max" placeholder="Макс. цена" min="0" />
+      <button id="apply-filter-button">Применить</button>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const cards = document.querySelectorAll(".card");
+        const searchInput = document.getElementById("filter-search");
+        const minPriceInput = document.getElementById("filter-price-min");
+        const maxPriceInput = document.getElementById("filter-price-max");
+        const applyButton = document.getElementById("apply-filter-button");
+    
+        function getPriceValue(priceText) {
+          return parseInt(priceText.replace(/[^\d]/g, "")) || 0;
+        }
+    
+        function filterCards() {
+          const searchQuery = searchInput.value.trim().toLowerCase();
+          const minPrice = parseInt(minPriceInput.value) || 0;
+          const maxPrice = parseInt(maxPriceInput.value) || Infinity;
+    
+          cards.forEach(card => {
+            const title = card.querySelector("h4").textContent.toLowerCase();
+            const priceText = card.querySelector(".price").textContent;
+            const price = getPriceValue(priceText);
+    
+            const matchSearch = title.includes(searchQuery);
+            const matchPrice = price >= minPrice && price <= maxPrice;
+    
+            if (matchSearch && matchPrice) {
+              card.style.display = "flex";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        }
+    
+        applyButton.addEventListener("click", filterCards);
+      });
+    </script>
+    
+    
+    <div class="filters">
+      <button data-filter="all" class="active">Все</button>
+        <button data-filter="roses">Розы</button>
+      <button data-filter="bouquets">Букеты</button>
+      <button data-filter="monobukets">Монобукеты</button>
+        <button data-filter="baskets">Корзины</button>
+      <button data-filter="compositions">Композиции</button>
+      <button data-filter="toys">Мягкие игрушки</button>
+      <button data-filter="postcards">Открытки</button>
+      <button data-filter="balloons">Шары</button>
+      <button data-filter="additional">Доп. товары</button>
+    </div>
+    
+    <div class="catalog" id="catalog">
+    
+      <div class="card" data-category="bouquets">
+       <div>
+        <img src="assets/img/kenia.jpg" alt="Кенийские Розы" />
+        <h4>Кенийские Розы</h4>
+        </div>
+        <div>
+        <div class="price">3290 ₽</div>
+        <div class="actions">
+          <button title="В корзину">в корзину</button>
+        </div>
+        </div>
+      </div>
+    
+      <div class="card" data-category="baskets">
+       <div>
+        <img src="assets/img/leto.jpg" alt="Цветы Лета" />
+        <h4>Цветы Лета</h4>
+        </div>
+        <div>
+        <div class="price">4290 ₽</div>
+        <div class="actions">
+          <button title="В корзину">в корзину</button>
+          </div>
+        </div>
+      </div>
+    
+      <div class="card" data-category="compositions">
+       <div>
+        <img src="assets/img/esmiralda.jpg" alt="Эсмеральда" />
+        <h4>Эсмеральда</h4>
+        </div>
+        <div>
+        <div class="price">7990 ₽</div>
+        <div class="actions">
+          <button title="В корзину">в корзину</button>
+        </div>
+        </div>
+      </div>
+    
+      <div class="card" data-category="roses">
+       <div>
+        <img src="assets/img/kenia.jpg" alt="Кенийские Розы" />
+        <h4>Кенийские Розы</h4>
+        </div>
+        <div>
+        <div class="price">3290 ₽</div>
+        <div class="actions">
+          <button title="В корзину">в корзину</button>
+        </div>
+        </div>
+      </div>
+    
+      <div class="card" data-category="toys">
+       <div>
+        <img src="assets/img/kenia.jpg" alt="Кенийские Розы" />
+        <h4>Кенийские Розы</h4>
+        </div>
+        <div>
+        <div class="price">3290 ₽</div>
+        <div class="actions">
+          <button title="В корзину">в корзину</button>
+        </div>
+        </div>
+      </div>
+    
+      <div class="card" data-category="bouquets">
+       <div>
+        <img src="assets/img/leto.jpg" alt="Цветы Лета" />
+        <h4>Цветы Лета</h4>
+        </div>
+        <div>
+        <div class="price">4290 ₽</div>
+        <div class="actions">
+          <button title="В корзину">в корзину</button>
+        </div>
+        </div>
+      </div>
+    
+      <div class="card" data-category="bouquets">
+       <div>
+        <img src="assets/img/esmiralda.jpg" alt="Эсмеральда" />
+        <h4>Эсмеральда</h4>
+        </div>
+        <div>
+        <div class="price">7990 ₽</div>
+        <div class="actions">
+          <button title="В корзину">в корзину</button>
+        </div>
+        </div>
+      </div>
+    
+      <div class="card" data-category="balloons">
+       <div>
+        <img src="assets/img/rozi.jpg" alt="Красочные Розы" />
+        <h4>Красочные Розы</h4>
+        </div>
+        <div>
+        <div class="price">3290 ₽</div>
+        <div class="actions">
+          <button title="В корзину">в корзину</button>
+        </div>
+        </div>
+      </div>
+    
+    
+        <!-- Сообщение для корзины -->
+    <div id="cartMessage">Товар добавлен в корзину</div>
+    <script>
+      // Обработка кнопок "Купить"
+      const buyButtons = document.querySelectorAll('.actions');
+      const cartMessage = document.getElementById('cartMessage');
+    
+      buyButtons.forEach(button => {
+        button.onclick = () => {
+          // Показываем сообщение
+          cartMessage.style.display = 'block';
+    
+          // "Заглушка", можно добавить сюда логику добавления в корзину
+    
+          // Через 3 секунды скрываем сообщение
+          setTimeout(() => {
+            cartMessage.style.display = 'none';
+          }, 3000);
+        };
+      });
+    </script>
+    
+    </div>
+    
+    <!-- Модальное окно -->
+    <div id="productModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <img id="modalImg" src="" alt="">
+        <p id="modalDescription"></p>
+      </div>
+    </div>
+    
+    <!-- сезоны  -->
+    <script>
+      // Обработка фильтров
+      const filterButtons = document.querySelectorAll('.filters button');
+      const cards = document.querySelectorAll('.catalog .card');
+    
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          const filter = button.getAttribute('data-filter');
+          cards.forEach(card => {
+            if (filter === 'all' || card.getAttribute('data-category') === filter) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    
+      // Объявляем переменные для модалки
+      const modal = document.getElementById('productModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalImg = document.getElementById('modalImg');
+      const modalDescription = document.getElementById('modalDescription');
+      const closeBtn = document.querySelector('.close');
+    
+      // Закрытие модалки по нажатию крестика
+      closeBtn.onclick = () => {
+        modal.style.display = 'none';
+      };
+    
+      // Закрытие по клику вне модального контента
+      window.onclick = (e) => {
+        if (e.target == modal) {
+          modal.style.display = 'none';
+        }
+      };
+    
+      // Обработка кликов по картинкам товаров
+      cards.forEach(card => {
+        const img = card.querySelector('img');
+        img.onclick = (e) => {
+          e.stopPropagation(); // чтобы клик по изображению не срабатывал на карточке
+    
+          const title = card.querySelector('h4').innerText;
+          const imgSrc = img.src;
+          const description = `Описание для "${title}". Здесь можно вставить более подробную информацию.`;
+    
+          // Обновляем содержимое модалки
+          modalTitle.innerText = title;
+          modalImg.src = imgSrc;
+          modalDescription.innerText = description;
+    
+          // Открываем модалку
+          modal.style.display = 'flex';
+        };
+      });
+    </script>
+    
+    
+    <!-- Иконка корзины в виде SVG -->
+    <a href="cart.html" id="cart-container" style="position:fixed; bottom:20px; right:20px; cursor:pointer; display:flex; align-items:center;">
+      <!-- Новая SVG-иконка корзины -->
+      <svg id="cart-icon" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path d="M1 1h4l2.68 13.39a1 1 0 0 0 1 .61h9.72a1 1 0 0 0 1-.76l1.38-7.21A1 1 0 0 0 20 6H6"></path>
+      </svg>
+      <div id="cart-count" style="margin-left:8px; font-weight:bold; font-size:18px;">0</div>
+    </a>
+    <!-- корзина  -->
+    <script>
+      // Инициализация корзины из Local Storage
+      let cartItems = [];
+    
+      function loadCart() {
+        const data = localStorage.getItem('cart');
+        if (data) {
+          return JSON.parse(data);
+        }
+        return [];
+      }
+    
+      function saveCart() {
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+      }
+    
+      // Обновление счетчика в иконке корзины
+      function updateCartCount() {
+        document.getElementById('cart-count').textContent = cartItems.length;
+      }
+    
+      document.addEventListener('DOMContentLoaded', () => {
+        // Загрузить корзину и обновить счетчик
+        cartItems = loadCart();
+        updateCartCount();
+    
+        // Обработчик для кнопок "Купить"
+        const buyButtons = document.querySelectorAll('button[title="В корзину"]');
+    
+        // Обработчик для кнопок "Купить"
+    buyButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.card');
+        if (!card) return;
+    
+        const title = card.querySelector('h4')?.textContent.trim() || 'Без названия';
+        const priceText = card.querySelector('.price')?.textContent.trim() || 'Цена не указана';
+        const imgSrc = card.querySelector('img')?.getAttribute('src') || '';
+    
+        const product = { title, price: priceText, img: imgSrc };
+    
+        // Добавляем товар в корзину
+        cartItems.push(product);
+        saveCart();
+        updateCartCount();
+      });
+    });
+      });
+    </script>
+    
+    
+    
+    
+    </div>
+    </section>
+    
+    <script>
+      function setSeasonClass() {
+        const body = document.body;
+        const month = new Date().getMonth() + 1; // 1..12
+    
+        // Снимаем все темы, если были
+        body.classList.remove('spring', 'summer', 'autumn', 'winter');
+    
+        if (month >= 3 && month <= 5) {
+          body.classList.add('spring');
+        } else if (month >= 6 && month <= 8) {
+          body.classList.add('summer');
+        } else if (month >= 9 && month <= 11) {
+          body.classList.add('autumn');
+        } else {
+          body.classList.add('winter');
+        }
+      }
+    
+      document.addEventListener('DOMContentLoaded', setSeasonClass);
+    </script>
+    
+    
+    </body>
+    
+
+
+    <script src="assets/js/app.min.js"></script>
+
+<footer class="flower-shop-footer">
+  <div class="footer-container">
+    <div class="footer-contacts">
+      <h4>Контакты</h4>
+        <p>+7 (987) 186-96-46</p>
+      <p>+7 (917) 884-07-47</p>
+    </div>
+    <div class="footer-social">
+      <h4>Социальные сети</h4>
+
+<div class="footer_colls">
+     <div class="">
+      <a href="https://www.instagram.com/buketeria_kzn?igsh=Z2J5N2t0M2Y1bWln" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/24/2111/2111463.png" alt="Instagram" />
+        Instagram
+      </a>
+
+      <a href="https://t.me/buketnaja_kazan" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/24/2111/2111646.png" alt="Telegram" />
+        Telegram
+      </a>
+
+      <a href="https://wa.me/79871869646" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/24/733/733585.png" alt="WhatsApp" />
+          WhatsApp
+        </a>
+        </div>
+</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 Цветочный магазин. Все права защищены.</p>
+  </div>
+</footer>
+
+
+</body>
+</html>

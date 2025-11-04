@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-papKH9prdtf2KnY1TQ++Lht0X3MdXs7Ma8q7mO6YIYmbC1TuYKtIX6xd33Yz8zpP2FK4l9c1V0Q0/st3YhV4jRQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Библиотека jQuery-->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    <title>Buketeria — Корзина</title>
+</head>
+<body>
+
+    
+    <body id="bgImage">
+      <div class="container">
+        <header>
+      <a href="index.html" class="logo">BUKETERIA</a>
+      <nav class="nav">
+        <a href="contact.html">Контакты</a>
+        <a href="review.html">Отзывы</a>
+        <a href="uxod.html">Уход за цветами</a>
+        <a href="cart.html">Корзина</a>
+      </nav>
+    
+    
+      <!-- Бургер-меню для мобильных -->
+    <div class="burger-wrapper">
+      <button class="burger-menu" aria-label="Меню">&#9776;</button>
+      <nav class="burger-nav">
+        <ul>
+          <li><a href="contact.html">Контакты</a></li>
+          <li><a href="review.html">Отзывы</a></li>
+          <li><a href="uxod.html">Уход за цветами</a></li>
+          <li><a href="cart.html">Корзина</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+         <script>
+      const burgerBtn = document.querySelector('.burger-menu');
+      const burgerNav = document.querySelector('.burger-nav');
+    
+      burgerBtn.addEventListener('click', () => {
+        burgerNav.classList.toggle('active');
+        burgerBtn.classList.toggle('active');
+    
+        // Меняем иконку
+        if (burgerBtn.classList.contains('active')) {
+          burgerBtn.innerHTML = '&#10005;'; // крестик ×
+        } else {
+          burgerBtn.innerHTML = '&#9776;'; // бургер ≡
+        }
+      });
+    
+      // Закрытие меню при клике вне его
+      document.addEventListener('click', (e) => {
+        if (!burgerBtn.contains(e.target) && !burgerNav.contains(e.target)) {
+          burgerNav.classList.remove('active');
+          burgerBtn.classList.remove('active');
+          burgerBtn.innerHTML = '&#9776;'; // вернуть иконку бургер
+        }
+      });
+    </script>
+      </header>
+    </div>
+    
+      <div class="season-banner">
+        <img src="assets/img/back.jpg" alt="">
+    </div>
+      <!-- Основная часть: товары и корзина -->
+    <section class="intro">
+      <div class="container">
+    
+        <!-- Секция корзины -->
+        <div id="cart-section" class="cart-section" style="margin-top:40px;">
+          <h2 class="section-title">Ваши покупки</h2>
+          <div id="cart-items" class="cart-items">
+            <!-- Здесь будут отображаться выбранные товары -->
+            <p class="empty-message">Корзина пуста.</p>
+          </div>
+          <div class="cart-summary">
+            <strong>Итог: </strong><span id="total-price">0 ₽</span>
+          </div>
+          <button id="clear-cart" class="btn clear-btn">Очистить корзину</button>
+          <button id="order-btn" class="btn order-btn">Оформить заказ</button>
+        </div>
+    <script>
+      document.getElementById('order-btn').addEventListener('click', () => {
+      if (cartItems.length === 0) {
+        alert('В корзине пусто!');
+        return;
+      }
+    
+      // Формируем сообщение
+      let message = 'Заказ из Buketeria:\n\n';
+      let totalSum = 0;
+    
+      cartItems.forEach((item, index) => {
+        const priceNumber = parseFloat(item.price.replace(' ₽', '').replace(',', '.'));
+        totalSum += priceNumber;
+        message += `${index + 1}. ${item.title} - ${item.price}\n`;
+        // вставляем ссылку на изображение товара
+        if (item.imageUrl) {
+          message += `Посмотреть товар: ${item.imageUrl}\n`;
+        }
+      });
+    
+      message += `\nИтог: ${totalSum.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} ₽`;
+    
+      // Указываем номер телефона (замените на свой)
+      const phoneNumber = '79871869646';
+    
+      // Создаём ссылку на WhatsApp с закодированным сообщением
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    
+      // Открываем WhatsApp
+      window.open(whatsappUrl, '_blank');
+    });
+    </script>
+      </div>
+    </section>
+    <script>
+      // Инициализация корзины из Local Storage
+      let cartItems = [];
+    
+      function loadCart() {
+        const data = localStorage.getItem('cart');
+        if (data) {
+          return JSON.parse(data);
+        }
+        return [];
+      }
+    
+      function saveCart() {
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+      }
+    
+      // Отображение корзины
+      function renderCart() {
+      const cartContainer = document.getElementById('cart-items');
+      const totalPriceSpan = document.getElementById('total-price');
+    
+      cartContainer.innerHTML = '';
+    
+      if (cartItems.length === 0) {
+        const msg = document.createElement('p');
+        msg.className = 'empty-message';
+        msg.textContent = 'Корзина пуста.';
+        cartContainer.appendChild(msg);
+        totalPriceSpan.textContent = '0 ₽';
+        return;
+      }
+    
+      let totalSum = 0;
+      cartItems.forEach((item, index) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+    
+        const priceValue = parseFloat(item.price.replace(' ₽', '').replace(',', '.'));
+        totalSum += priceValue;
+    
+        // Для отображения изображения
+        const imgHTML = item.imgSrc ? `<img src="${item.imgSrc}" alt="${item.title}" style="width:50px; margin-right:10px;">` : '';
+    
+        itemDiv.innerHTML = `
+          <div style="display:flex; align-items:center;">
+            ${imgHTML}
+            <div>
+              <div><strong>${item.title}</strong></div>
+              <div>${item.price}</div>
+            </div>
+          </div>
+          <button data-index="${index}" class="remove-btn">Удалить</button>
+        `;
+        cartContainer.appendChild(itemDiv);
+      });
+    
+      totalPriceSpan.textContent = totalSum.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
+    
+      // Обработка удаления
+      document.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const index = parseInt(btn.dataset.index);
+          if (!isNaN(index)) {
+            cartItems.splice(index, 1);
+            saveCart();
+            renderCart();
+          }
+        });
+      });
+    }
+    
+      // Обработка очистки корзины
+      document.getElementById('clear-cart').addEventListener('click', () => {
+        cartItems = [];
+        saveCart();
+        renderCart();
+      });
+    
+      document.addEventListener('DOMContentLoaded', () => {
+        // восстановление корзины
+        cartItems = loadCart();
+        renderCart();
+    
+        // обработка добавления товара
+        document.querySelectorAll('button[title="В корзину"]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const card = btn.closest('.card');
+            if (!card) return;
+            // При добавлении товара в корзину
+    const title = card.querySelector('h4')?.textContent.trim() || 'Без названия';
+    const price = card.querySelector('.price')?.textContent.trim() || '0 ₽';
+    const imgSrc = card.querySelector('img')?.getAttribute('src') || '';
+    
+    cartItems.push({ title, price, imgSrc });
+            // добавляем
+            saveCart();
+            renderCart();
+          });
+        });
+      });
+    </script>
+    
+    
+    <script>
+      // Определение сезона и применение класса
+      function getSeason() {
+        const month = new Date().getMonth() + 1; // Мецы с 1
+        if (month >= 3 && month <= 5) {
+          return 'spring'; // Весна
+        } else if (month >= 6 && month <= 8) {
+          return 'summer'; // Лето
+        } else if (month >= 9 && month <= 11) {
+          return 'autumn'; // Осень
+        } else {
+          return 'winter'; // Зима
+        }
+      }
+    
+      document.addEventListener("DOMContentLoaded", () => {
+        const season = getSeason();
+        document.body.classList.add(season);
+      });
+    </script>
+    </body>
+    
+
+
+    <script src="assets/js/app.min.js"></script>
+
+<footer class="flower-shop-footer">
+  <div class="footer-container">
+    <div class="footer-contacts">
+      <h4>Контакты</h4>
+        <p>+7 (987) 186-96-46</p>
+      <p>+7 (917) 884-07-47</p>
+    </div>
+    <div class="footer-social">
+      <h4>Социальные сети</h4>
+
+<div class="footer_colls">
+     <div class="">
+      <a href="https://www.instagram.com/buketeria_kzn?igsh=Z2J5N2t0M2Y1bWln" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/24/2111/2111463.png" alt="Instagram" />
+        Instagram
+      </a>
+
+      <a href="https://t.me/buketnaja_kazan" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/24/2111/2111646.png" alt="Telegram" />
+        Telegram
+      </a>
+
+      <a href="https://wa.me/79871869646" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/24/733/733585.png" alt="WhatsApp" />
+          WhatsApp
+        </a>
+        </div>
+</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 Цветочный магазин. Все права защищены.</p>
+  </div>
+</footer>
+
+
+</body>
+</html>

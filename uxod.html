@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-papKH9prdtf2KnY1TQ++Lht0X3MdXs7Ma8q7mO6YIYmbC1TuYKtIX6xd33Yz8zpP2FK4l9c1V0Q0/st3YhV4jRQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Библиотека jQuery-->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    <title></title>
+</head>
+<body>
+
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Уход за цветами</title>
+    
+    <!-- Подключение CSS переменных и стилей -->
+    <style>
+    :root {
+      --color-primary: #982d52;
+      --color-primary-dark: #982d52;
+      --color-primary-light: #982d52;
+      --color-background: #fff;
+      --color-text: #333;
+      --color-price: var(--color-primary);
+      --color-button-bg: var(--color-primary);
+      --color-button-hover-bg: var(--color-primary-dark);
+      --color-icon-btn-color: var(--color-primary);
+      --color-icon-btn-hover-bg: #d31c5b;
+      --color-link: var(--color-primary);
+      --color-link-hover: var(--color-primary-light);
+      --color-header-text: var(--color-primary);
+      --color-filter-border: var(--color-primary-light);
+      --color-filter-bg-active: var(--color-primary-light);
+    }
+    
+    /* Общие стили страницы */
+    body {
+      background: #ffc9e2;
+    }
+    
+    /* Заголовки */
+    h1, h2, h3 {
+      color: var(--color-header-text);
+    }
+    
+    /* Стили разделов */
+    section {
+      padding: 40px 20px;
+      margin: 0 auto;
+    }
+    
+    /* Заголовки секций */
+    .section-title {
+      font-size: 2em;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--color-filter-border);
+      padding-bottom: 10px;
+    }
+    
+    /* Текстовые блоки и параграфы */
+    p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+    
+    /* Стиль для кнопок ухода за цветами */
+    .btn {
+      background-color: var(--color-button-bg);
+      color: #fff;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    
+    .btn:hover {
+      background-color: var(--color-button-hover-bg);
+    }
+    
+    /* Некоторые дополнительные стили для изображений и карточек */
+    .card {
+      background-color: #fff;
+      border: 2px solid var(--color-filter-border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .card h3 {
+      margin-top: 0;
+      color: var(--color-header-text);
+    }
+    
+    .card p {
+      margin: 10px 0;
+    }
+    
+    /* Ссылки */
+    a {
+      color: var(--color-link);
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    
+    a:hover {
+      color: var(--color-link-hover);
+    }
+    
+        .text_uxod{
+            width: 50%;
+            text-align: center;
+        }
+    
+        @media(max-width: 1024px){
+            .text_uxod{
+                width: 80%;
+            }
+        }
+        \
+        @media(max-width: 500px){
+            .text_uxod{
+                width: 90%;
+            }
+        }
+    </style>
+    </head>
+    <body>
+    
+    
+     <div class="container">
+        <header>
+      <a href="index.html" class="logo">BUKETERIA</a>
+      <nav class="nav">
+        <a href="contact.html">Контакты</a>
+        <a href="review.html">Отзывы</a>
+        <a href="uxod.html">Уход за цветами</a>
+        <a href="cart.html">Корзина</a>
+      </nav>
+    
+    
+      <!-- Бургер-меню для мобильных -->
+    <div class="burger-wrapper">
+      <button class="burger-menu" aria-label="Меню">&#9776;</button>
+      <nav class="burger-nav">
+        <ul>
+          <li><a href="contact.html">Контакты</a></li>
+          <li><a href="review.html">Отзывы</a></li>
+          <li><a href="uxod.html">Уход за цветами</a></li>
+          <li><a href="cart.html">Корзина</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+         <script>
+      const burgerBtn = document.querySelector('.burger-menu');
+      const burgerNav = document.querySelector('.burger-nav');
+    
+      burgerBtn.addEventListener('click', () => {
+        burgerNav.classList.toggle('active');
+        burgerBtn.classList.toggle('active');
+    
+        // Меняем иконку
+        if (burgerBtn.classList.contains('active')) {
+          burgerBtn.innerHTML = '&#10005;'; // крестик ×
+        } else {
+          burgerBtn.innerHTML = '&#9776;'; // бургер ≡
+        }
+      });
+    
+      // Закрытие меню при клике вне его
+      document.addEventListener('click', (e) => {
+        if (!burgerBtn.contains(e.target) && !burgerNav.contains(e.target)) {
+          burgerNav.classList.remove('active');
+          burgerBtn.classList.remove('active');
+          burgerBtn.innerHTML = '&#9776;'; // вернуть иконку бургер
+        }
+      });
+    </script>
+      </header>
+    
+    
+    <div class="season-banner">
+        <img src="assets/img/back.jpg" alt="">
+    </div>
+    </div>
+    <!-- Введение -->
+    <section style="display: flex; justify-content: center;">
+       <div class="text_uxod" style="">
+        <p style="padding: 0; margin: 0;">РЕКОМЕНДАЦИИ</p>
+        <p>по уходу за цветами</p>
+    
+    <p>
+    Выберите место вдали от отопительных приборов, <br/>прямых солнечных лучей и сквозняков.<br/><br/>
+    
+    Если у вас букет - <br/>
+    Делайте свежий срез ножом или секатором и меняйте воду в вазе каждые два дня.
+    Мы не рекомендуем снимать упаковку букета, она сохраняет влагу и создает микроклимат букету.<br/><br/>
+    
+    Если у вас монобукет роз -<br/>
+    Чем короче стебли цветка, тем дольше они будут вас радовать своей красотой. Подбирайте вазу так, чтобы вода закрывала 2/3 стебля роз.
+    <br/><br/>
+    Если у вас композиция -<br/>
+    Цветочную композицию поливайте 1/2 дня небольшим количеством воды, аккуратно раздвинув цветы, постарайтесь попасть на флористическую губку.
+    <br/><br/>
+    С заботой, БУКЕТЕРИЯ ❤️</p></div>
+    </section>
+    
+    
+    </body>
+    </html>
+    
+
+
+    <script src="assets/js/app.min.js"></script>
+
+<footer class="flower-shop-footer">
+  <div class="footer-container">
+    <div class="footer-contacts">
+      <h4>Контакты</h4>
+        <p>+7 (987) 186-96-46</p>
+      <p>+7 (917) 884-07-47</p>
+    </div>
+    <div class="footer-social">
+      <h4>Социальные сети</h4>
+
+<div class="footer_colls">
+     <div class="">
+      <a href="https://www.instagram.com/buketeria_kzn?igsh=Z2J5N2t0M2Y1bWln" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/24/2111/2111463.png" alt="Instagram" />
+        Instagram
+      </a>
+
+      <a href="https://t.me/buketnaja_kazan" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/24/2111/2111646.png" alt="Telegram" />
+        Telegram
+      </a>
+
+      <a href="https://wa.me/79871869646" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/24/733/733585.png" alt="WhatsApp" />
+          WhatsApp
+        </a>
+        </div>
+</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 Цветочный магазин. Все права защищены.</p>
+  </div>
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-papKH9prdtf2KnY1TQ++Lht0X3MdXs7Ma8q7mO6YIYmbC1TuYKtIX6xd33Yz8zpP2FK4l9c1V0Q0/st3YhV4jRQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Библиотека jQuery-->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    <title>Buketeria</title>
+</head>
+<body>
+
+    
+    <body>
+    
+     <div class="container">
+        <header>
+      <a href="index.html" class="logo">BUKETERIA</a>
+      <nav class="nav">
+        <a href="contact.html">Контакты</a>
+        <a href="about.html">О сервисе</a>
+        <a href="delivery.html">Доставка</a>
+        <a href="cart.html">Корзина</a>
+      </nav>
+    
+    
+      <!-- Бургер-меню для мобильных -->
+    <div class="burger-wrapper">
+      <button class="burger-menu" aria-label="Меню">&#9776;</button>
+      <nav class="burger-nav">
+        <ul>
+          <li><a href="contact.html">Контакты</a></li>
+          <li><a href="about.html">О сервисе</a></li>
+          <li><a href="delivery.html">Доставка</a></li>
+          <li><a href="cart.html">Корзина</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+         <script>
+      const burgerBtn = document.querySelector('.burger-menu');
+      const burgerNav = document.querySelector('.burger-nav');
+    
+      burgerBtn.addEventListener('click', () => {
+        burgerNav.classList.toggle('active');
+        burgerBtn.classList.toggle('active');
+    
+        // Меняем иконку
+        if (burgerBtn.classList.contains('active')) {
+          burgerBtn.innerHTML = '&#10005;'; // крестик ×
+        } else {
+          burgerBtn.innerHTML = '&#9776;'; // бургер ≡
+        }
+      });
+    
+      // Закрытие меню при клике вне его
+      document.addEventListener('click', (e) => {
+        if (!burgerBtn.contains(e.target) && !burgerNav.contains(e.target)) {
+          burgerNav.classList.remove('active');
+          burgerBtn.classList.remove('active');
+          burgerBtn.innerHTML = '&#9776;'; // вернуть иконку бургер
+        }
+      });
+    </script>
+      </header>
+    </div>
+    
+    
+    
+    <div class="season-banner">
+        <img src="assets/img/back.jpg" alt="">
+    </div>
+    <div class="container">
+      <section class="section">
+        <h2>Общие условия доставки</h2>
+        <p>Цветочный магазин "Букетик" предлагает быструю и надежную доставку свежих цветов по городу и за его пределами. Мы заботимся о качестве и своевременности, чтобы ваши подарки всегда радовали любимых.</p>
+      </section>
+    
+      <section class="section">
+        <h2>Способы доставки</h2>
+        <div class="delivery-options">
+          <div class="card_delivery">
+            <h3>Курьерская доставка</h3>
+            <p>Доставляем заказы прямо к вашему дому или офису в течение 2-4 часов. Возможна предварительная заказ за сутки.</p>
+          </div>
+          <div class="card_delivery">
+            <h3>Самовывоз</h3>
+            <p>Вы можете забрать свой заказ самостоятельно по адресу: г. Ваш Город, ул. Цветочная, д. 10. График работы: с 9:00 до 18:00.</p>
+          </div>
+          <div class="card_delivery">
+            <h3>Доставка за город</h3>
+            <p>Для заказов за пределами города возможна доставка автотранспортом. Стоимость и сроки обсуждаются индивидуально.</p>
+          </div>
+        </div>
+      </section>
+    
+      <section class="section">
+        <h2>Стоимость и сроки</h2>
+        <ul>
+          <li><strong>Курьерская доставка:</strong> 300 руб., в пределах города — 2-4 часа.</li>
+          <li><strong>Самовывоз:</strong> бесплатно, по предварительной записи.</li>
+          <li><strong>Доставка за город:</strong> уточняется при заказе, обычно от 1 до 3 часов.</li>
+        </ul>
+      </section>
+    
+      <section class="section">
+        <h2>Контактная информация</h2>
+        <p>Если у вас есть вопросы или хотите сделать заказ по телефону, звоните по номеру:</p>
+        <p><strong>+7 (987) 186-96-46</strong><br/><strong>+7 (917) 884-07-47</strong></p>
+        <p>или пишите на WhatsApp</p>
+      </section>
+    </div>
+    
+    </body>
+    
+    
+
+
+    <script src="assets/js/app.min.js"></script>
+
+<footer class="flower-shop-footer">
+  <div class="footer-container">
+    <div class="footer-contacts">
+      <h4>Контакты</h4>
+        <p>+7 (987) 186-96-46</p>
+      <p>+7 (917) 884-07-47</p>
+    </div>
+    <div class="footer-social">
+      <h4>Социальные сети</h4>
+
+<div class="footer_colls">
+     <div class="">
+      <a href="https://www.instagram.com/buketeria_kzn?igsh=Z2J5N2t0M2Y1bWln" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/24/2111/2111463.png" alt="Instagram" />
+        Instagram
+      </a>
+
+      <a href="https://t.me/buketnaja_kazan" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/24/2111/2111646.png" alt="Telegram" />
+        Telegram
+      </a>
+
+      <a href="https://wa.me/79871869646" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/24/733/733585.png" alt="WhatsApp" />
+          WhatsApp
+        </a>
+        </div>
+</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 Цветочный магазин. Все права защищены.</p>
+  </div>
+</footer>
+
+
+</body>
+</html>

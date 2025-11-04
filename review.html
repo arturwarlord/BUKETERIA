@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-papKH9prdtf2KnY1TQ++Lht0X3MdXs7Ma8q7mO6YIYmbC1TuYKtIX6xd33Yz8zpP2FK4l9c1V0Q0/st3YhV4jRQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Библиотека jQuery-->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    <title>Buketeria</title>
+</head>
+<body>
+
+    
+    <body id="bgImage">
+    
+    
+     <div class="container">
+        <header>
+      <a href="index.html" class="logo">BUKETERIA</a>
+      <nav class="nav">
+        <a href="contact.html">Контакты</a>
+        <a href="review.html">Отзывы</a>
+        <a href="uxod.html">Уход за цветами</a>
+        <a href="cart.html">Корзина</a>
+      </nav>
+    
+    
+      <!-- Бургер-меню для мобильных -->
+    <div class="burger-wrapper">
+      <button class="burger-menu" aria-label="Меню">&#9776;</button>
+      <nav class="burger-nav">
+        <ul>
+          <li><a href="contact.html">Контакты</a></li>
+          <li><a href="review.html">Отзывы</a></li>
+          <li><a href="uxod.html">Уход за цветами</a></li>
+          <li><a href="cart.html">Корзина</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+         <script>
+      const burgerBtn = document.querySelector('.burger-menu');
+      const burgerNav = document.querySelector('.burger-nav');
+    
+      burgerBtn.addEventListener('click', () => {
+        burgerNav.classList.toggle('active');
+        burgerBtn.classList.toggle('active');
+    
+        // Меняем иконку
+        if (burgerBtn.classList.contains('active')) {
+          burgerBtn.innerHTML = '&#10005;'; // крестик ×
+        } else {
+          burgerBtn.innerHTML = '&#9776;'; // бургер ≡
+        }
+      });
+    
+      // Закрытие меню при клике вне его
+      document.addEventListener('click', (e) => {
+        if (!burgerBtn.contains(e.target) && !burgerNav.contains(e.target)) {
+          burgerNav.classList.remove('active');
+          burgerBtn.classList.remove('active');
+          burgerBtn.innerHTML = '&#9776;'; // вернуть иконку бургер
+        }
+      });
+    </script>
+      </header>
+    </div>
+    
+    
+    
+    <div class="season-banner">
+        <img src="assets/img/back.jpg" alt="">
+    </div>
+    
+    
+    
+    <div class="container">
+    <h2 class="section-title">Отзывы наших клиентов</h2>
+    
+    
+    <div class="slider">
+      <div class="slides" id="slidesContainer">
+        <div class="slide"><img src="assets/img/review2.jpg" style="width:100%;"></div>
+        <div class="slide"><img src="assets/img/review4.jpg" style="width:100%;"></div>
+        <div class="slide"><img src="assets/img/review5.jpg" style="width:100%;"></div>
+        <div class="slide"><img src="assets/img/review2.jpg" style="width:100%;"></div>
+        <div class="slide"><img src="assets/img/review4.jpg" style="width:100%;"></div>
+        <div class="slide"><img src="assets/img/review5.jpg" style="width:100%;"></div>
+      </div>
+      <button class="prev" id="prevBtn">&laquo;</button>
+      <button class="next" id="nextBtn">&raquo;</button>
+    </div>
+    
+    <script>
+      const slidesContainer = document.getElementById('slidesContainer');
+      const totalSlides = slidesContainer.children.length;
+      let currentIndex = 0;
+    
+      function showSlide(index) {
+        if(index >= totalSlides) index = 0;
+        if(index < 0) index = totalSlides -1;
+        currentIndex = index;
+        slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+    
+      document.getElementById('prevBtn').addEventListener('click', () => {
+        showSlide(currentIndex -1);
+      });
+    
+      document.getElementById('nextBtn').addEventListener('click', () => {
+        showSlide(currentIndex +1);
+      });
+    
+      // Изначально показываем первый слайд
+      showSlide(0);
+    </script>
+    </div>
+    
+
+
+    <script src="assets/js/app.min.js"></script>
+
+<footer class="flower-shop-footer">
+  <div class="footer-container">
+    <div class="footer-contacts">
+      <h4>Контакты</h4>
+        <p>+7 (987) 186-96-46</p>
+      <p>+7 (917) 884-07-47</p>
+    </div>
+    <div class="footer-social">
+      <h4>Социальные сети</h4>
+
+<div class="footer_colls">
+     <div class="">
+      <a href="https://www.instagram.com/buketeria_kzn?igsh=Z2J5N2t0M2Y1bWln" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/24/2111/2111463.png" alt="Instagram" />
+        Instagram
+      </a>
+
+      <a href="https://t.me/buketnaja_kazan" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/24/2111/2111646.png" alt="Telegram" />
+        Telegram
+      </a>
+
+      <a href="https://wa.me/79871869646" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/24/733/733585.png" alt="WhatsApp" />
+          WhatsApp
+        </a>
+        </div>
+</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 Цветочный магазин. Все права защищены.</p>
+  </div>
+</footer>
+
+
+</body>
+</html>
